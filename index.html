@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health, at-ease. — Care that meets you where you are.</title>
+  <meta name="description" content="Health, at-ease. is building the decentralized, community-centered care system designed around the midwives, community health workers, and patients who have always been holding healthcare together." />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="Health, at-ease." />
+  <meta property="og:description" content="The hospital is not the center of healthcare. It never was." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://healthatease.com" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #1a1f1d;
+      --moss: #2c4a40;
+      --moss-deep: #1e362f;
+      --sage: #8aa995;
+      --cream: #f5efe2;
+      --cream-warm: #ede4d1;
+      --paper: #fbf7ed;
+      --clay: #b8593c;
+      --clay-soft: #d4866a;
+      --rule: rgba(26, 31, 29, 0.12);
+
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Instrument Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ───────── grain texture ───────── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.6;
+      z-index: 999;
+      mix-blend-mode: multiply;
+    }
+
+    /* ───────── nav ───────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(251, 247, 237, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 14px 40px;
+      border-bottom-color: var(--rule);
+    }
+    .wordmark {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: baseline;
+      font-variation-settings: "opsz" 30, "SOFT" 50;
+    }
+    .wordmark strong {
+      font-weight: 700;
+      font-variation-settings: "opsz" 30, "SOFT" 30;
+    }
+    .wordmark .comma {
+      font-weight: 700;
+      margin-right: 0.34em;
+    }
+    .wordmark em {
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      font-variation-settings: "opsz" 30, "SOFT" 100;
+    }
+    .wordmark .dot {
+      color: var(--clay);
+      font-weight: 400;
+      margin-left: -0.04em;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 9px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 100px;
+      opacity: 1 !important;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* ───────── layout helpers ───────── */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+    .narrow { max-width: 780px; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--moss);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: "";
+      width: 24px; height: 1px;
+      background: var(--moss);
+    }
+    .rule {
+      height: 1px;
+      background: var(--rule);
+      margin: 0 40px;
+    }
+
+    /* ───────── HERO ───────── */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 32px;
+      background: var(--ink);
+      opacity: 0.3;
+      animation: scrollHint 2.4s ease-in-out infinite;
+    }
+    @keyframes scrollHint {
+      0%, 100% { transform: translateX(-50%) scaleY(0.4); transform-origin: top; opacity: 0.15; }
+      50% { transform: translateX(-50%) scaleY(1); opacity: 0.45; }
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--moss);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: rise 0.9s ease-out 0.1s forwards;
+    }
+    .hero-eyebrow span { color: var(--clay); }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(40px, 7.2vw, 96px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      max-width: 17ch;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    .hero h1 .em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--moss);
+    }
+    .hero h1 .tail {
+      display: block;
+      color: var(--moss);
+      font-style: italic;
+      font-weight: 300;
+    }
+    .hero h1 span.line {
+      display: block;
+      overflow: hidden;
+    }
+    .hero h1 span.line span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: rise 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .hero h1 span.line:nth-child(1) span { animation-delay: 0.25s; }
+    .hero h1 span.line:nth-child(2) span { animation-delay: 0.4s; }
+    .hero h1 span.line:nth-child(3) span { animation-delay: 0.55s; }
+    @keyframes rise {
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .hero-sub {
+      margin-top: 48px;
+      max-width: 540px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: rgba(26, 31, 29, 0.78);
+      opacity: 0;
+      animation: rise 1s ease-out 0.85s forwards;
+    }
+    .hero-actions {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: rise 1s ease-out 1s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .btn-primary:hover {
+      background: var(--moss-deep);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      color: var(--ink);
+      border-color: var(--rule);
+    }
+    .btn-ghost:hover {
+      border-color: var(--ink);
+    }
+    .btn .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ───────── PREMISE / MANIFESTO ───────── */
+    .premise {
+      padding: 140px 40px;
+      background: var(--paper);
+    }
+    .premise-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .premise-grid .section-label { margin-top: 12px; }
+    .premise p {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(22px, 2.4vw, 30px);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      max-width: 22ch * 1.5;
+      font-variation-settings: "opsz" 36, "SOFT" 50;
+    }
+    .premise p + p { margin-top: 32px; }
+    .premise p .accent {
+      color: var(--clay);
+      font-style: italic;
+    }
+    .dropcap::first-letter {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 5.4em;
+      line-height: 0.85;
+      float: left;
+      padding: 6px 12px 0 0;
+      color: var(--moss);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    /* ───────── BUILDING / HORIZONS ───────── */
+    .building {
+      padding: 140px 40px;
+      background: var(--cream);
+      position: relative;
+    }
+    .building-header {
+      max-width: 1240px;
+      margin: 0 auto 80px;
+    }
+    .building h2, .workers h2, .science h2, .involve h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      color: var(--ink);
+      font-variation-settings: "opsz" 96, "SOFT" 50;
+    }
+    .building h2 em, .workers h2 em, .science h2 em, .involve h2 em {
+      font-style: italic;
+      color: var(--moss);
+      font-weight: 300;
+    }
+    .horizons {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0;
+    }
+    .horizon {
+      padding: 56px 0;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .horizon:last-child { border-bottom: 1px solid var(--rule); }
+    .horizon-num {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--moss);
+      letter-spacing: 0.1em;
+      padding-top: 8px;
+    }
+    .horizon-num strong {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--clay);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+      font-variation-settings: "opsz" 144;
+    }
+    .horizon-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      font-variation-settings: "opsz" 36, "SOFT" 50;
+    }
+    .horizon-title .when {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-top: 10px;
+      font-style: normal;
+    }
+    .horizon-body {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(26, 31, 29, 0.78);
+    }
+    .horizon-body strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ───────── WORKERS ───────── */
+    .workers {
+      padding: 160px 40px;
+      background: var(--moss-deep);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .workers::before {
+      content: "";
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(184, 89, 60, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+    .workers .section-label { color: var(--clay-soft); }
+    .workers .section-label::before { background: var(--clay-soft); }
+    .workers h2 { color: var(--cream); }
+    .workers h2 em { color: var(--clay-soft); }
+    .workers-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+    .workers-lead {
+      font-family: var(--serif);
+      font-weight: 350;
+      font-size: clamp(20px, 2vw, 24px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-top: 12px;
+      font-variation-settings: "opsz" 36;
+    }
+    .principles {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .principle {
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(245, 239, 226, 0.14);
+    }
+    .principle:last-child { border-bottom: none; padding-bottom: 0; }
+    .principle h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 36, "SOFT" 50;
+    }
+    .principle p {
+      color: rgba(245, 239, 226, 0.72);
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    /* ───────── SCIENCE ───────── */
+    .science {
+      padding: 140px 40px;
+      background: var(--paper);
+    }
+    .science-header {
+      max-width: 1240px;
+      margin: 0 auto 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .science-header p {
+      max-width: 44ch;
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(26, 31, 29, 0.78);
+    }
+    .pillars {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .pillar {
+      padding: 40px 32px;
+      background: var(--cream-warm);
+      border-radius: 4px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--clay);
+    }
+    .pillar:nth-child(2)::before { background: var(--moss); }
+    .pillar:nth-child(3)::before { background: var(--sage); }
+    .pillar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px -20px rgba(26, 31, 29, 0.18);
+    }
+    .pillar-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .pillar h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      font-variation-settings: "opsz" 36, "SOFT" 50;
+    }
+    .pillar h3 em {
+      font-style: italic;
+      color: var(--moss);
+      font-weight: 300;
+    }
+    .pillar p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(26, 31, 29, 0.74);
+    }
+
+    /* ───────── INVOLVE / CTA ───────── */
+    .involve {
+      padding: 160px 40px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+      text-align: center;
+    }
+    .involve-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .involve h2 {
+      max-width: none;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+    .involve p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(26, 31, 29, 0.78);
+      margin-bottom: 40px;
+      max-width: 56ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .signup-form {
+      display: flex;
+      gap: 8px;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 6px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 100px;
+      transition: border-color 0.2s;
+    }
+    .signup-form:focus-within {
+      border-color: var(--ink);
+    }
+    .signup-form input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 12px 18px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      outline: none;
+    }
+    .signup-form input::placeholder { color: rgba(26, 31, 29, 0.4); }
+    .signup-form button {
+      border: none;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .signup-form button:hover { background: var(--moss-deep); }
+    .involve-note {
+      margin-top: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+    .involve-note a {
+      color: var(--clay);
+      text-decoration: none;
+      border-bottom: 1px solid var(--clay);
+      padding-bottom: 1px;
+    }
+
+    /* ───────── FOOTER ───────── */
+    footer {
+      background: var(--ink);
+      color: rgba(245, 239, 226, 0.7);
+      padding: 80px 40px 40px;
+    }
+    .footer-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(245, 239, 226, 0.12);
+    }
+    footer .wordmark {
+      color: var(--cream);
+      font-size: 28px;
+    }
+    footer .wordmark .dot { color: var(--clay-soft); }
+    .footer-tag {
+      margin-top: 12px;
+      font-size: 14px;
+      max-width: 36ch;
+      line-height: 1.55;
+    }
+    .footer-col h4 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a {
+      color: rgba(245, 239, 226, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--cream); }
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 32px auto 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 239, 226, 0.4);
+    }
+
+    /* ───────── reveal on scroll ───────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ───────── responsive ───────── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      nav.scrolled { padding: 12px 20px; }
+      .nav-links { gap: 18px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .container, .hero, .premise, .building, .workers, .science, .involve { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 110px; }
+      .premise-grid, .science-header, .workers-grid { grid-template-columns: 1fr; gap: 32px; }
+      .horizon { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+      .horizon-num { padding-top: 0; }
+      .horizon-num strong { font-size: 44px; display: inline-block; margin-right: 12px; }
+      .pillars { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
+      .signup-form { flex-direction: column; border-radius: 16px; padding: 8px; }
+      .signup-form button { border-radius: 100px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#top" class="wordmark"><strong>Health</strong><span class="comma">,</span><em>at-ease</em><span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#premise">Premise</a>
+      <a href="#building">What we're building</a>
+      <a href="#workers">For the workers</a>
+      <a href="#science">Science</a>
+      <a href="#involve" class="nav-cta">Get involved</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="hero-eyebrow">A new operating model for healthcare <span>·</span> In development</div>
+      <h1>
+        <span class="line"><span>The hospital is not</span></span>
+        <span class="line"><span>the center of healthcare.</span></span>
+        <span class="line"><span class="tail">It never was.</span></span>
+      </h1>
+      <p class="hero-sub">
+        Health, at-ease. is building the decentralized, community-centered care system designed around the midwives, community health workers, and patients who have always been holding healthcare together.
+      </p>
+      <div class="hero-actions">
+        <a href="#involve" class="btn btn-primary">Join the early circle <span class="arrow">→</span></a>
+        <a href="#premise" class="btn btn-ghost">Read the premise</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMISE -->
+  <section class="premise" id="premise">
+    <div class="premise-grid">
+      <div>
+        <div class="section-label">01 &nbsp; The premise</div>
+      </div>
+      <div>
+        <p class="dropcap reveal">
+          Modern healthcare is centralized, episodic, and quietly extractive. Patients travel to the system. Care happens once a year, or once a crisis. The community health workers and midwives who actually deliver care to most of the world's people do so without the data, the tools, or the credit.
+        </p>
+        <p class="reveal">
+          We think that's the wrong shape. <span class="accent">Care should meet people where they are</span>, run continuously instead of episodically, and be built around the workers who already do the holding.
+        </p>
+        <p class="reveal">
+          Health, at-ease. is the long version of that argument — a research-grounded, community-first care system, built in the open, designed to last.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- BUILDING -->
+  <section class="building" id="building">
+    <div class="building-header">
+      <div class="section-label reveal">02 &nbsp; What we're building</div>
+      <h2 class="reveal">Three horizons. <em>One thesis.</em></h2>
+    </div>
+
+    <div class="horizons">
+
+      <div class="horizon reveal">
+        <div class="horizon-num">
+          <strong>01</strong>
+          Now → 18 months
+        </div>
+        <div class="horizon-title">
+          CareBridge
+          <span class="when">Wedge product</span>
+        </div>
+        <div class="horizon-body">
+          An offline-first decision-support and resource-coordination platform for midwives and community health workers, starting with maternal &amp; child health in low-connectivity settings. Every clinical reasoning trace is <strong>attributed to the worker who made it</strong> — building a portable professional record where one has historically been denied.
+        </div>
+      </div>
+
+      <div class="horizon reveal">
+        <div class="horizon-num">
+          <strong>02</strong>
+          18 months → 5 years
+        </div>
+        <div class="horizon-title">
+          The Decentralized Care Network
+          <span class="when">Expansion</span>
+        </div>
+        <div class="horizon-body">
+          The same worker-centered platform extended to chronic disease, mental health, and infectious disease surveillance. Community health nodes anchor the network in physical space. Outcomes-based contracts with public health systems and a defined revenue share back to the CHW network — <strong>workers as economic stakeholders, not labor</strong>.
+        </div>
+      </div>
+
+      <div class="horizon reveal">
+        <div class="horizon-num">
+          <strong>03</strong>
+          5 → 15 years
+        </div>
+        <div class="horizon-title">
+          At-Home Diagnostics &amp; Digital Twins
+          <span class="when">Long horizon</span>
+        </div>
+        <div class="horizon-body">
+          Microfluidic at-home blood draw, biomarker panels, and physics-informed digital twin models that recover early disease signal from sparse biosensor data. Drive-through diagnostic nodes for high-throughput, low-acuity care. <strong>Continuous wellness, not episodic crisis response.</strong>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKERS -->
+  <section class="workers" id="workers">
+    <div class="workers-grid">
+      <div>
+        <div class="section-label reveal">03 &nbsp; The center</div>
+        <h2 class="reveal">Built around the workers <em>who hold healthcare together.</em></h2>
+        <p class="workers-lead reveal">
+          Most rural-health technology is designed for the patient and quietly works around the health worker. We invert that. The midwife, the ASHA, the CHW — they are the user. Every design decision flows from there.
+        </p>
+      </div>
+
+      <div class="principles">
+        <div class="principle reveal">
+          <h3>Attribution is structural.</h3>
+          <p>Every clinical reasoning trace, every safe outcome, every saved life is logged against the worker's professional ID. Over time it becomes a portable credential they own.</p>
+        </div>
+        <div class="principle reveal">
+          <h3>Compensation flows down.</h3>
+          <p>When the system is paid for outcomes, a defined share of revenue returns to the worker network — by contract, not as charity.</p>
+        </div>
+        <div class="principle reveal">
+          <h3>Co-designed, locally rooted.</h3>
+          <p>Local language, local idioms, local clinical norms. Workers in the launch geography are co-authors of the protocols, not consultants on a finished product.</p>
+        </div>
+        <div class="principle reveal">
+          <h3>Open where it builds trust.</h3>
+          <p>The clinical safety substrate and the protocols are open source. Trust is the most valuable thing this system can earn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE -->
+  <section class="science" id="science">
+    <div class="science-header">
+      <div>
+        <div class="section-label reveal">04 &nbsp; The science underneath</div>
+        <h2 class="reveal">Doctoral research, <em>productized.</em></h2>
+      </div>
+      <p class="reveal">
+        Health, at-ease. is grounded in three lines of doctoral work at the University of North Texas — clinical AI safety, synthetic data infrastructure for low-data populations, and physics-informed modeling for early disease signal. Together they form the company's R&amp;D backbone.
+      </p>
+    </div>
+
+    <div class="pillars">
+
+      <div class="pillar reveal">
+        <span class="pillar-num">Pillar 01</span>
+        <h3>HealthAdvisor <em>— Clinical AI Safety.</em></h3>
+        <p>A hallucination-resistant retrieval-augmented system with multi-axis evaluation across faithfulness, confidence, relevance, and safety. The substrate every patient-facing decision in the platform sits on.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <span class="pillar-num">Pillar 02</span>
+        <h3>DATAGEN <em>— Data infrastructure.</em></h3>
+        <p>A neuro-symbolic pipeline for generating ontology-validated synthetic clinical data, designed to produce population-appropriate training corpora for settings where real labeled data does not exist.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <span class="pillar-num">Pillar 03</span>
+        <h3>Digital Twin <em>— Predictive engine.</em></h3>
+        <p>Multiscale simulation coupling agent-based models, reaction-diffusion PDEs, and physics-informed neural networks — recovering early disease signal from the sparse, noisy data home diagnostics actually produce.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INVOLVE -->
+  <section class="involve" id="involve">
+    <div class="involve-inner">
+      <div class="section-label reveal" style="justify-content:center">05 &nbsp; Get involved</div>
+      <h2 class="reveal">Building this <em>in the open.</em></h2>
+      <p class="reveal">
+        We are early. If you are a clinician, midwife, community health worker, public-health researcher, funder, or builder who recognizes this argument — leave your email and we'll keep you close to the work as it develops.
+      </p>
+
+      <form class="signup-form reveal" onsubmit="handleSignup(event)">
+        <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button type="submit">Stay close →</button>
+      </form>
+
+      <p class="involve-note reveal">
+        Or write directly &nbsp;·&nbsp; <a href="mailto:healthatease5@gmail.com">healthatease5@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="wordmark"><strong>Health</strong><span class="comma">,</span><em>at-ease</em><span class="dot">.</span></a>
+        <p class="footer-tag">Care that meets you where you are. A research-grounded, community-first care system, built in the open.</p>
+      </div>
+      <div class="footer-col">
+        <h4>The work</h4>
+        <ul>
+          <li><a href="#premise">Premise</a></li>
+          <li><a href="#building">What we're building</a></li>
+          <li><a href="#workers">For the workers</a></li>
+          <li><a href="#science">Science</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:healthatease5@gmail.com">healthatease5@gmail.com</a></li>
+          <li><a href="#involve">Join the early circle</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Health, at-ease.</span>
+      <span>Denton, TX · Built with care.</span>
+    </div>
+  </footer>
+
+  <script>
+    // sticky nav background on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 24) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // intersection observer for scroll reveals
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => io.observe(el));
+
+    // simple form handler placeholder
+    function handleSignup(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      const email = input.value;
+      // Replace this with Formspree, ConvertKit, or your real handler
+      btn.textContent = 'Thank you ✓';
+      btn.style.background = '#2c4a40';
+      input.value = '';
+      input.disabled = true;
+      console.log('Signup:', email);
+    }
+  </script>
+</body>
+</html>
